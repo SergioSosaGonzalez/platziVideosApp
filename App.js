@@ -6,7 +6,8 @@
 
 import React, { Component } from 'react';
 
-import Home from './src/views/containers/HomeC'
+import Home   from './src/views/containers/HomeC'
+import Header from './src/widgets/ui/HeaderUI'
 
 import {
   Text
@@ -24,7 +25,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Home>
-        <Text>header</Text>
+        <Header />
         <Text>buscador</Text>
         <Text>categorias</Text>
         <Text>sugerencias</Text>
