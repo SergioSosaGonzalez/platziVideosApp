@@ -2,10 +2,9 @@ import React from  'react'
 
 import {
     View,
-    Text,
     Image,
     StyleSheet,
-    SafeAreaView, // para evitar conflictos con el notch de iPhoneX o similares
+    SafeAreaView // para evitar conflictos con el notch de iPhoneX o similares
 } from 'react-native'
 
 function HeaderUI( props ){
@@ -32,18 +31,16 @@ const styles = StyleSheet.create({
     logo :{
         width: 80,
         height: 26,
-        resizeMode: 'contain',
+        resizeMode: 'contain'
     },
     container: {
         flexDirection: 'row',
-        backgroundColor: 'red',
         padding: 10
     },
     right: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        backgroundColor: 'green'
+        justifyContent: 'flex-end'
     }
 })
 

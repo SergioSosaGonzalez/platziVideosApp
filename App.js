@@ -8,8 +8,10 @@ import React, { Component } from 'react';
 
 import Home   from './src/views/containers/HomeC'
 import Header from './src/widgets/ui/HeaderUI'
+import SuggestionList from './src/widgets/containers/SuggestionList'
 
 import {
+  Platform,
   Text
 } from 'react-native';
 
@@ -28,7 +30,7 @@ export default class App extends Component<Props> {
         <Header />
         <Text>buscador</Text>
         <Text>categorias</Text>
-        <Text>sugerencias</Text>
+        <SuggestionList></SuggestionList>
       </Home>
     );
   }

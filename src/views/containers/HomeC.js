@@ -6,4 +6,4 @@ class HomeC extends Component {
     }
 }
 
-export default HomeC
+export default HomeC 
