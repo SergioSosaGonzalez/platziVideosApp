@@ -8,34 +8,47 @@ import React, { Component } from 'react';
 
 import Home   from './src/views/containers/HomeC'
 import Header from './src/widgets/ui/HeaderUI'
-import SuggestionList from './src/widgets/containers/SuggestionList'
-import API from './src/utils/api'
+import SuggestionList from './src/widgets/containers/SuggestionListC'
+import CategoryList   from './src/widgets/containers/CategoryListC'
+import API    from './src/utils/api'
 
 import {
-  Platform,
   Text
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
 type Props = {};
 export default class App extends Component<Props> {
+  state = {
+    suggestionList: [],
+    categoryList: [],
+    loadingCategories: true,
+    loadingSuggestions: true
+
+  }
   async componentDidMount(){
-    const movies = await API.getSuggestions( 30 )
-    console.log( movies )
+    const movies     = await API.getSuggestions( 30 )
+    const categories = await API.getMovies()
+    this.setState({
+      suggestionList: movies,
+      categoryList  : categories,
+      loadingCategories: false,
+      loadingSuggestions: false
+    })
   }
   render() {
+    const { loadingCategories, loadingSuggestions } = this.state
     return (
       <Home>
         <Header />
         <Text>buscador</Text>
-        <Text>categorias</Text>
-        <SuggestionList></SuggestionList>
+        <CategoryList
+          loading = { loadingCategories }
+          list = { this.state.categoryList }
+        />
+        <SuggestionList
+          loading = { loadingSuggestions }
+          list = { this.state.suggestionList }
+        />
       </Home>
     );
   }

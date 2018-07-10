@@ -3,10 +3,10 @@ import Layout from '../ui/SuggestionListUI'
 import Empty from '../../widgets/ui/EmptyUI'
 import Separator from '../../widgets/ui/VerticalSeparatorUI'
 import Suggestion from '../../widgets/ui/SuggestionUI'
+import Loader from '../../widgets/ui/LoaderUI'
 
 import {
-    FlatList,
-    Text
+    FlatList
 } from 'react-native'
 
 class SuggestionListC extends Component {
@@ -19,22 +19,25 @@ class SuggestionListC extends Component {
     renderItem = ({item}) => (
         <Suggestion {...item}/>
     )
+    keyExtractor = (item) => {
+        return item.id.toString()
+    }
     render() {
-        const list = [
-            {title: 'Hulk', key: '0'},
-            {title: 'Avengers', key: '1'},
-            {title: 'Pokemon' , key: '2'}
-        ]
         return (
             <Layout
                 title = "Recomendado para tí" 
             >
-                <FlatList
-                    data                   = { list }
-                    renderItem             = { this.renderItem }
-                    ListEmptyComponent     = { this.renderEmpty }
-                    ItemSeparatorComponent = { this.itemSeparator }
-                />
+                { this.props.loading ? (
+                    <Loader />
+                ) : (
+                    <FlatList
+                        data                   = { this.props.list }
+                        renderItem             = { this.renderItem }
+                        keyExtractor           = { this.keyExtractor }
+                        ListEmptyComponent     = { this.renderEmpty }
+                        ItemSeparatorComponent = { this.itemSeparator }
+                    />
+                )}
             </Layout> 
         )
     }

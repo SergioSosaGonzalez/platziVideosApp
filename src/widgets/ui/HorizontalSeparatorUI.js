@@ -4,19 +4,21 @@ import {
     StyleSheet
 } from 'react-native'
 
-const VerticalSeparatorUI = props => (
+const HorizontalSeparatorUI = props => (
     <View style = { [
         styles.separator,
         {
-            borderTopColor: props.color ? props.color : '#dedede'
+            borderRightColor: props.color ? props.color : '#dedede'
         }
     ]}/>
 )
 
 const styles = StyleSheet.create({
     separator: {
-        borderTopWidth: 1
+        flex: 1,
+        marginHorizontal: 5,
+        borderRightWidth: 1
     }
 })
 
-export default VerticalSeparatorUI
+export default HorizontalSeparatorUI

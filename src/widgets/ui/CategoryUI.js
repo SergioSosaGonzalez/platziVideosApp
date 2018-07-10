@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native'
 
-const SuggestionUI = props => (
+const CategoryUI = props => (
     <View style = { styles.container }>
         <View style = { styles.left  }>
             <Image
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SuggestionUI
+export default CategoryUI
