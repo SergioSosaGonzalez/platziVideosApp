@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../ui/SuggestionListUI'
 import Empty from '../../widgets/ui/EmptyUI'
 import Separator from '../../widgets/ui/VerticalSeparatorUI'
+import Suggestion from '../../widgets/ui/SuggestionUI'
 
 import {
     FlatList,
@@ -13,7 +14,10 @@ class SuggestionListC extends Component {
         <Empty text = "No hay sugerencias :(" />
     )
     itemSeparator = () => (
-        <Separator color = 'red'/>
+        <Separator/>
+    )
+    renderItem = ({item}) => (
+        <Suggestion {...item}/>
     )
     render() {
         const list = [
@@ -26,12 +30,10 @@ class SuggestionListC extends Component {
                 title = "Recomendado para tí" 
             >
                 <FlatList
-                    data = { list }
-                    ListEmptyComponent = { this.renderEmpty }
+                    data                   = { list }
+                    renderItem             = { this.renderItem }
+                    ListEmptyComponent     = { this.renderEmpty }
                     ItemSeparatorComponent = { this.itemSeparator }
-                    renderItem = {({item}) => (
-                        <Text>{item.title}</Text>
-                    )}
                 />
             </Layout> 
         )
