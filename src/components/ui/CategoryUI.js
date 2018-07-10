@@ -2,78 +2,45 @@ import React from 'react'
 
 import {
     View,
-    Image,
+    ImageBackground,
     Text,
     StyleSheet
 } from 'react-native'
 
-const CategoryUI = props => (
-    <View style = { styles.container }>
-        <View style = { styles.left  }>
-            <Image
-                style =  { styles.cover }
-                source = { { uri: props.medium_cover_image } }
-            />
-            <View style = { styles.genreContainer }>
-                <Text style = { styles.genreText }>
-                    { props.genres ? props.genres[0] : 'n/a'}
-                </Text>
+const CategoryUI = props => {
+    if( !props.genres ){
+        return null
+    }
+    return (
+        <ImageBackground
+            style = { styles.wrapper }
+            source = {{
+                uri: props.background_image
+            }}
+        >
+            <View style = { styles.container }>
+                <Text style = { styles.genre }>{ props.genres[0] }</Text>
             </View>
-        </View>
-        <View style = { styles.right }>
-            <Text style = { styles.title  }>{ props.title }</Text>
-            <Text style = { styles.year   }>{ props.year }</Text>
-            <Text style = { styles.rating }>{ props.rating } estrellas</Text>
-        </View>
-    </View>
-)
+        </ImageBackground>
+    )
+}
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-    },
-    cover: {
-        height: 150,
-        width: 100,
-        resizeMode: 'contain'
-    },
-    left: {
-
-    },
-    right: {
-        paddingLeft: 10,
-        justifyContent: 'space-between'
-    },
-    genreContainer: {
-        position:'absolute',
-        left: 0,
-        top: 0,
-        backgroundColor: 'black'
-    },
-    genreText: {
-        color: 'white',
-        fontSize: 11,
-        paddingVertical: 5,
-        paddingHorizontal: 7
-    },
-    title: {
-        fontSize: 18,
-        color: '#45546d'
-    },
-    year: {
-        backgroundColor: '#70b124',
-        paddingVertical:  4,
-        paddingHorizontal: 6,
-        color: '#FFFFFF',
-        fontSize: 11,
-        borderRadius: 5,
+    wrapper: {
+        width: 250,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
         overflow: 'hidden',
-        alignSelf: 'flex-start'
+        elevation: 2
     },
-    rating: {
-        color: '#6b6b6b',
-        fontSize: 14,
-        fontWeight: 'bold'
+    genre: {
+        color: 'white',
+        fontSize: 40,
+        fontWeight: 'bold',
+        elevation: 2,
+        textShadowRadius: 10
     }
 })
 

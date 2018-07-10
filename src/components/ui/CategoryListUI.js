@@ -20,8 +20,7 @@ function CategoryListUI( props ){
 const styles = StyleSheet.create({
     container: {
         paddingVertical: 30,
-        paddingHorizontal: 10,
-        flex: 1
+        paddingHorizontal: 10
     },
     title: {
         color: '#4c4c4c',

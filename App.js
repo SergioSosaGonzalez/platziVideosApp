@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 
 import Home   from './src/views/containers/HomeC'
@@ -11,9 +10,11 @@ import Header from './src/components/ui/HeaderUI'
 import SuggestionList from './src/components/containers/SuggestionListC'
 import CategoryList   from './src/components/containers/CategoryListC'
 import API    from './src/utils/api'
+import Player from './src/widgets/containers/PlayerC'
 
 import {
-  Text
+  Text,
+  View
 } from 'react-native';
 
 type Props = {};
@@ -40,6 +41,7 @@ export default class App extends Component<Props> {
     return (
       <Home>
         <Header />
+        <Player />
         <Text>buscador</Text>
         <CategoryList
           loading = { loadingCategories }
