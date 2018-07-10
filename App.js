@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import Home   from './src/views/containers/HomeC'
 import Header from './src/widgets/ui/HeaderUI'
 import SuggestionList from './src/widgets/containers/SuggestionList'
+import API from './src/utils/api'
 
 import {
   Platform,
@@ -24,6 +25,10 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  async componentDidMount(){
+    const movies = await API.getSuggestions( 30 )
+    console.log( movies )
+  }
   render() {
     return (
       <Home>
