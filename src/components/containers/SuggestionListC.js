@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../ui/SuggestionListUI'
 import Empty from '../../widgets/ui/EmptyUI'
 import Separator from '../../widgets/ui/VerticalSeparatorUI'
-import Suggestion from '../../widgets/ui/SuggestionUI'
+import Suggestion from '../ui/SuggestionUI'
 import Loader from '../../widgets/ui/LoaderUI'
 
 import {

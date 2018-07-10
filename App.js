@@ -7,9 +7,9 @@
 import React, { Component } from 'react';
 
 import Home   from './src/views/containers/HomeC'
-import Header from './src/widgets/ui/HeaderUI'
-import SuggestionList from './src/widgets/containers/SuggestionListC'
-import CategoryList   from './src/widgets/containers/CategoryListC'
+import Header from './src/components/ui/HeaderUI'
+import SuggestionList from './src/components/containers/SuggestionListC'
+import CategoryList   from './src/components/containers/CategoryListC'
 import API    from './src/utils/api'
 
 import {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Layout from '../ui/CategoryListUI'
 import Empty from '../../widgets/ui/EmptyUI'
 import Separator from '../../widgets/ui/HorizontalSeparatorUI'
-import Category from '../../widgets/ui/CategoryUI'
+import Category from '../ui/CategoryUI'
 import Loader from '../../widgets/ui/LoaderUI'
 
 import {
