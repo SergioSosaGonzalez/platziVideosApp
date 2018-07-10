@@ -13,8 +13,7 @@ import API    from './src/utils/api'
 import Player from './src/widgets/containers/PlayerC'
 
 import {
-  Text,
-  View
+  Text
 } from 'react-native';
 
 type Props = {};
@@ -52,6 +51,6 @@ export default class App extends Component<Props> {
           list = { this.state.suggestionList }
         />
       </Home>
-    );
+    )
   }
 }

@@ -32,8 +32,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
-        overflow: 'hidden',
-        elevation: 2
+        overflow: 'hidden'
     },
     genre: {
         color: 'white',

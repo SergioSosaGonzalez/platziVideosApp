@@ -8,7 +8,7 @@ const HorizontalSeparatorUI = props => (
     <View style = { [
         styles.separator,
         {
-            borderRightColor: props.color ? props.color : '#dedede'
+            borderRightColor: props.color ? props.color : 'rgba(0,0,0,.05)'
         }
     ]}/>
 )
