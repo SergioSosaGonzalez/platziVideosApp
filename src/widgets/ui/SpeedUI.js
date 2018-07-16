@@ -11,24 +11,38 @@ import imgSpeedL from '../../../assets/speed-left.png'
 import imgSpeedR from '../../../assets/speed-right.png'
 
 const SpeedUI = props => (
-    <TouchableHighlight
-        onPress = { props.onPress }
-        style = { styles.container }
-        underlayColor = 'red'
-        hitSlop = {{
-            left: 5,
-            top: 5,
-            bottom: 5,
-            right: 5 
-        }}
-    >
-        <View style={ styles.speed }>
+    <View style={ styles.speed }>
+        <TouchableHighlight
+            onPress = { props.onPressL }
+            style = { styles.container }
+            underlayColor = 'red'
+            hitSlop = {{
+                left: 5,
+                top: 5,
+                bottom: 5,
+                right: 5 
+            }}
+        >
             <Image style={ styles.icon }
                 source = { imgSpeedL }/>
-            <Image style={ styles.icon }
-                source = { imgSpeedR }/>
-        </View>
-    </TouchableHighlight>
+        </TouchableHighlight>
+        <TouchableHighlight
+            onPress = { props.onPressR }
+            style = { styles.container }
+            underlayColor = 'red'
+            hitSlop = {{
+                left: 5,
+                top: 5,
+                bottom: 5,
+                right: 5 
+            }}
+        >
+            <View>
+                <Image style={ styles.icon }
+                    source = { imgSpeedR }/>
+            </View>
+        </TouchableHighlight>
+    </View>
 )
 
 const styles = StyleSheet.create({

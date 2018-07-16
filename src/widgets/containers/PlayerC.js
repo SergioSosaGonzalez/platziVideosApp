@@ -22,7 +22,9 @@ class PlayerC extends Component {
         paused  : false,
         elapsed : '00:00',
         duration: '00:00',
-        repeat  : false
+        repeat  : false,
+        playRate: 1,
+        volume  : 1
     }
     onBuffer = ({ isBuffering }) => {
         this.setState({ lodaing: isBuffering })
@@ -49,34 +51,70 @@ class PlayerC extends Component {
             elapsed: ('0'+ ~~( info.currentTime / 60 )).substr(-2) + ':' + ('0'+ ~~( info.currentTime % 60 )).substr(-2)
         })
     }
-    onEnd = () => {
-        this.setState({
-            elapsed: this.state.duration
-        })
+    onEnd = ( info ) => {
         this.video.seek(0)
-        this.video.Play()
+        var elapsed = this.state.duration
+        if( this.state.repeat ){
+            elapsed = '00:00' 
+        } else {
+            this.setState({ paused: true })
+        }
+        this.setState({
+            elapsed
+        })
     }
     onRepeat = () => {
+        const repeat = !this.state.repeat
         this.setState({
-            repeat: !this.state.repeat
+            repeat
         })
-        this.video.repeat = this.state.repeat
+    }
+    onSpeed = ( dir ) => {
+        var playRate = this.state.playRate
+            playRate += dir == '-' ? -.5 : .5
+        this.setState({
+            playRate
+        })
+    }
+    onVolume = () => {
+        var volume = this.state.volume + 0.5
+        var muted  = this.state.muted
+        if( volume > 1 ){
+            volume = 0
+            muted = true
+        } else {
+            muted = false
+        }
+        this.setState({  
+            volume,
+            muted
+        })
     }
     render () {
         return(
             <Layout
-                loading = { this.state.loading }
+                loading    = { this.state.loading }
                 fullscreen = { this.props.fullscreen }
+                playRate   = { this.state.playRate }
                 video = {
                     <Video
                         ref = { this.setRefVideo }
-                        source     = { { uri: 'https://player.vimeo.com/external/121181631.hd.mp4?s=747c09089b9c786ecea7d4a2eed7714c2ecb4918&profile_id=119&oauth2_token_id=57447761&download=1' } }
+                        source     = { {
+                            uri: 'https://noesishosting.com/drive/videos/minecraft-indi.mp4'
+                            //uri: 'https://noesishosting.com/drive/videos/minecraft-coco.mp4' 
+                            //uri: 'https://player.vimeo.com/external/121181631.hd.mp4?s=747c09089b9c786ecea7d4a2eed7714c2ecb4918&profile_id=119&oauth2_token_id=57447761&download=1'
+                        } }
                         style      = { styles.video }
                         resizeMode = { this.props.fullscreen ? 'contain' : 'cover' }
                         onBuffer   = { this.onBuffer }
                         onLoad     = { this.onLoad }
                         onProgress = { this.onProgress }
+                        onEnd      = { this.onEnd }
+                        muted      = { this.state.muted }
                         paused     = { this.state.paused }
+                        repeat     = { this.state.repeat }
+                        rate       = { this.state.playRate }
+                        volume     = { this.state.volume }
                     />
                 }
                 loader = {
@@ -87,7 +125,11 @@ class PlayerC extends Component {
                         <Restart 
                             onPress = { this.onRestart }
                         />
-                        <Speed />
+                        <Speed
+                            onPressL = { this.onSpeed.bind(this, '-') }
+                            onPressR = { this.onSpeed.bind(this, '+') }
+                            speed   = { this.state.playRate }
+                        />
                         <PlayPause
                             onPress = { this.playPause }
                             paused  = { this.state.paused }
@@ -100,7 +142,11 @@ class PlayerC extends Component {
                             onPress = { this.onRepeat }
                             repeat  = { this.state.repeat }
                         />
-                        <Volume />
+                        <Volume
+                            onPress = { this.onVolume }
+                            volume  = { this.state.volume }
+                            muted   = { this.state.muted }
+                        />
                         <Fullscreen 
                             onPress    = { this.props.onFullscreen }
                             fullscreen = { this.props.fullscreen }

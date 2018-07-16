@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     View,
+    Text,
     StyleSheet
 } from 'react-native'
 
@@ -13,6 +14,11 @@ const PlayerLayoutUI = props => {
             { props.loading && (
                 <View style = { styles.overlay }>
                     { props.loader }
+                </View>
+            )}
+            { props.playRate !== 1 && (
+                <View style = { styles.playRate }>
+                    <Text style = { styles.playRateText }>{ props.playRate }X</Text>
                 </View>
             )}
             <View
@@ -29,6 +35,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         bottom: 0
+    },
+    playRate: {
+        position: 'absolute',
+        left  : 0,
+        top   : 0,
+        alignItems: 'center' 
+    },
+    playRateText: {
+        fontSize: 20,
+        color: 'white',
+        padding: 10
     },
     overlay: {
         position: 'absolute',

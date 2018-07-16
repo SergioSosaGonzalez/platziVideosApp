@@ -7,7 +7,6 @@ class Api {
             return [] // early return   
         }
         const {data}  = await query.json()
-//console.log(data.movies)
         return data.movies
     }
     async getMovies(){
@@ -16,7 +15,6 @@ class Api {
             return [] // early return   
         }
         const {data}  = await query.json()
-//console.log(data.movies)
         return data.movies
     }
 }

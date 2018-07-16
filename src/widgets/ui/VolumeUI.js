@@ -10,6 +10,8 @@ import {
 } from 'react-native'
 
 import imgVolumeH from '../../../assets/volume-high-48x48.png'
+import imgVolumeL from '../../../assets/volume-low-48x48.png'
+import imgMute from '../../../assets/mute-48x48.png'
 
 const VolumeUI = props => (
     <TouchableHighlight
@@ -24,8 +26,15 @@ const VolumeUI = props => (
         }}
     >
         <View>
-            <Image style={ styles.icon }
-                source = { imgVolumeH }/>
+            { props.muted ? (
+                <Image style={ styles.icon } source = { imgMute }/>
+            ) : (
+                props.volume === .5 ? (
+                    <Image style={ styles.icon } source = { imgVolumeL }/>
+                ) : (
+                    <Image style={ styles.icon } source = { imgVolumeH }/>
+                )
+            )}
         </View>
     </TouchableHighlight>
 )

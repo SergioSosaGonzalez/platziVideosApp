@@ -21,13 +21,14 @@ export default class App extends Component<Props> {
   state = {
     n: 0,
     suggestionList: [],
-    categoryList: [],
+    categoryList: [], 
     loadingCategories: true,
     loadingSuggestions: true,
     isFullscreen: false 
   }
   async componentDidMount(){
-    const movies     = await API.getSuggestions( 30 )
+    const z = ( ~~Math.random() * 50 ) + 10  // --- id aleatorio
+    const movies     = await API.getSuggestions( z )
     const categories = await API.getMovies()
     this.setState({
       suggestionList: movies,
