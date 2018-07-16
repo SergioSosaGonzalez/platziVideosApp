@@ -19,11 +19,12 @@ import {
 type Props = {};
 export default class App extends Component<Props> {
   state = {
+    n: 0,
     suggestionList: [],
     categoryList: [],
     loadingCategories: true,
-    loadingSuggestions: true
-
+    loadingSuggestions: true,
+    isFullscreen: false 
   }
   async componentDidMount(){
     const movies     = await API.getSuggestions( 30 )
@@ -35,21 +36,38 @@ export default class App extends Component<Props> {
       loadingSuggestions: false
     })
   }
+  onFullscreen = () => {
+    const isFullscreen = !this.state.isFullscreen 
+    const n = this.state.n
+    this.setState({
+      isFullscreen,
+      n: n+1
+    })
+    console.log( n, 99998, isFullscreen, Math.random() ) 
+  }
   render() {
     const { loadingCategories, loadingSuggestions } = this.state
     return (
       <Home>
-        <Header />
-        <Player />
-        <Text>buscador</Text>
-        <CategoryList
-          loading = { loadingCategories }
-          list = { this.state.categoryList }
-        />
-        <SuggestionList
-          loading = { loadingSuggestions }
-          list = { this.state.suggestionList }
-        />
+        
+          { !this.state.isFullscreen && <Header /> }
+
+          <Player
+            fullscreen = { this.state.isFullscreen }
+            onFullscreen = { this.onFullscreen }
+          />
+          
+          { !this.state.isFullscreen && <Text>buscador</Text> }
+          { !this.state.isFullscreen && <CategoryList
+              loading = { loadingCategories }
+              list = { this.state.categoryList }
+            />
+          }
+          { !this.state.isFullscreen && <SuggestionList
+              loading = { loadingSuggestions }
+              list = { this.state.suggestionList }
+            />
+          }
       </Home>
     )
   }

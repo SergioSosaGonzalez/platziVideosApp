@@ -4,9 +4,12 @@ import {
     TouchableNativeFeedback,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Text,
+    View,
+    Image,
     StyleSheet
 } from 'react-native'
+
+import imgVolumeH from '../../../assets/volume-high-48x48.png'
 
 const VolumeUI = props => (
     <TouchableHighlight
@@ -20,11 +23,10 @@ const VolumeUI = props => (
             right: 5 
         }}
     >
-        { props.volume ? (
-            <Text style={ styles.button }>FULL</Text>
-        ) : (
-            <Text style={ styles.button }>NORMAL</Text>
-        )}
+        <View>
+            <Image style={ styles.icon }
+                source = { imgVolumeH }/>
+        </View>
     </TouchableHighlight>
 )
 
@@ -35,8 +37,10 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     button: {
-        paddingVertical: 5,
-        paddingHorizontal: 10
+    },
+    icon: {
+        height: 36,
+        width: 36
     }
 })
 

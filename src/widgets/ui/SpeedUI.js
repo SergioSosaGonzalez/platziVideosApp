@@ -1,12 +1,14 @@
 import React from 'react'
 import {
     TouchableHighlight,
-    TouchableNativeFeedback,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
+    View,
     Text,
-    StyleSheet
+    StyleSheet,
+    Image
 } from 'react-native'
+
+import imgSpeedL from '../../../assets/speed-left.png'
+import imgSpeedR from '../../../assets/speed-right.png'
 
 const SpeedUI = props => (
     <TouchableHighlight
@@ -20,11 +22,12 @@ const SpeedUI = props => (
             right: 5 
         }}
     >
-        { props.speed ? (
-            <Text style={ styles.button }>FULL</Text>
-        ) : (
-            <Text style={ styles.button }>x</Text>
-        )}
+        <View style={ styles.speed }>
+            <Image style={ styles.icon }
+                source = { imgSpeedL }/>
+            <Image style={ styles.icon }
+                source = { imgSpeedR }/>
+        </View>
     </TouchableHighlight>
 )
 
@@ -35,8 +38,13 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     button: {
-        paddingVertical: 5,
-        paddingHorizontal: 10
+    },
+    icon: {
+        height: 36,
+        width: 36
+    },
+    speed: {
+        flexDirection: 'row'
     }
 })
 

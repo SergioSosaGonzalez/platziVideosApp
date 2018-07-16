@@ -11,8 +11,7 @@ import Repeat     from '../../widgets/ui/RepeatUI'
 import Volume     from '../../widgets/ui/VolumeUI'
 import Fullscreen from '../../widgets/ui/FullscreenUI'
 
-import {
-    Text,
+import { 
     StyleSheet,
     ActivityIndicator
 } from 'react-native'
@@ -51,10 +50,11 @@ class PlayerC extends Component {
         })
     }
     onEnd = () => {
-        this.playPause()
         this.setState({
             elapsed: this.state.duration
         })
+        this.video.seek(0)
+        this.video.Play()
     }
     onRepeat = () => {
         this.setState({
@@ -66,12 +66,13 @@ class PlayerC extends Component {
         return(
             <Layout
                 loading = { this.state.loading }
+                fullscreen = { this.props.fullscreen }
                 video = {
                     <Video
                         ref = { this.setRefVideo }
                         source     = { { uri: 'https://player.vimeo.com/external/121181631.hd.mp4?s=747c09089b9c786ecea7d4a2eed7714c2ecb4918&profile_id=119&oauth2_token_id=57447761&download=1' } }
                         style      = { styles.video }
-                        resizeMode = 'cover'  
+                        resizeMode = { this.props.fullscreen ? 'contain' : 'cover' }
                         onBuffer   = { this.onBuffer }
                         onLoad     = { this.onLoad }
                         onProgress = { this.onProgress }
@@ -100,7 +101,10 @@ class PlayerC extends Component {
                             repeat  = { this.state.repeat }
                         />
                         <Volume />
-                        <Fullscreen />
+                        <Fullscreen 
+                            onPress    = { this.props.onFullscreen }
+                            fullscreen = { this.props.fullscreen }
+                        />
                     </ControlLayout>
                 }
             />

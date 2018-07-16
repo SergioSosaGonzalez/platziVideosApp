@@ -23,7 +23,7 @@ const FullscreenUI = props => (
         <View style={ styles.button }>
             <Image
                 style  = { styles.icon }
-                source = { imgFullscreenMax }
+                source = { props.fullscreen ? imgFullscreenMin : imgFullscreenMax }
             />
         </View>
     </TouchableHighlight>
